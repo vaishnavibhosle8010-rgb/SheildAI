@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">Welcome, <strong>{{ user.name }}</strong></div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="dashboard-header fade-in">
+      <h1>🏠 Protection Dashboard</h1>
+      <p>Choose a tool to protect yourself from digital scams</p>
+    </div>
+
+    <div class="stats-bar fade-in fade-in-delay-1">
+      <div class="stat-chip">🛡 <span>6</span> Protection Tools</div>
+      <div class="stat-chip">🇮🇳 Built for <span>India</span></div>
+      <div class="stat-chip">⚡ <span>Real-time</span> Detection</div>
+      <div class="stat-chip">🌐 Works <span>Offline</span></div>
+    </div>
+
+    <div class="features-grid">
+
+      <a href="/url-analyzer" class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-icon icon-blue">🔗</div>
+        <h3>URL Scam Analyzer</h3>
+        <p>Paste any suspicious link to detect phishing sites, fake banking portals, and malicious domains.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="/text-analyzer" class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-icon icon-teal">💬</div>
+        <h3>Text Scam Analyzer</h3>
+        <p>Paste any SMS, WhatsApp message, or email to detect OTP fraud, fake prizes, and impersonation.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="/doctor-verify" class="feature-card fade-in fade-in-delay-3">
+        <div class="feature-icon icon-purple">🏥</div>
+        <h3>Doctor Verification</h3>
+        <p>Verify if a doctor or hospital is legitimate before paying consultation fees or sharing medical data.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="/voice-detect" class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-icon icon-orange">🎙</div>
+        <h3>Voice Scam Detection</h3>
+        <p>Record or speak a suspicious phone call. Our AI converts speech to text and detects scam patterns.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="/chatbot" class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-icon icon-green">🤖</div>
+        <h3>ShieldBot Assistant</h3>
+        <p>Ask our AI assistant any question about scams, fraud types, or how to protect yourself online.</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <div class="feature-card fade-in fade-in-delay-3" style="cursor:default; opacity:0.6;">
+        <div class="feature-icon icon-blue">📊</div>
+        <h3>Scam Reports (Coming)</h3>
+        <p>Community-reported scams from across India. Stay updated on the latest fraud campaigns.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 48px; background: rgba(0,160,255,0.04); border: 1px solid var(--border); border-left: 3px solid var(--danger); border-radius: var(--radius); padding: 24px;" class="fade-in">
+      <h3 style="font-size:16px; margin-bottom:12px;">🚨 Emergency Resources</h3>
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:22px; font-weight:800; color:var(--danger);">1930</div>
+          <div style="font-size:12px; color:var(--text-muted);">National Cyber Crime Helpline</div>
+        </div>
+        <div style="width:1px; background:var(--border);"></div>
+        <div>
+          <div style="font-size:15px; font-weight:600; color:var(--accent);">cybercrime.gov.in</div>
+          <div style="font-size:12px; color:var(--text-muted);">Report Cybercrime Online</div>
+        </div>
+        <div style="width:1px; background:var(--border);"></div>
+        <div>
+          <div style="font-size:15px; font-weight:600; color:var(--accent);">TRAI DND App</div>
+          <div style="font-size:12px; color:var(--text-muted);">Block Spam Calls & SMS</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustShield — Scam Protection Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      margin: 28px 0;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .num {
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat .lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+      align-self: center;
+    }
+    .features-hint {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .hint-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-box fade-in">
+      <div class="login-logo">
+        <div class="shield">🛡</div>
+        <h1>TrustShield</h1>
+        <p>ShieldAI — Real-time Scam Protection</p>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">6</div><div class="lbl">Detection Tools</div></div>
+        <div class="divider"></div>
+        <div class="hero-stat"><div class="num">100%</div><div class="lbl">Free to Use</div></div>
+        <div class="divider"></div>
+        <div class="hero-stat"><div class="num">AI</div><div class="lbl">Powered</div></div>
+      </div>
+
+      <div class="features-hint">
+        <span class="hint-tag">🔗 URL Scanner</span>
+        <span class="hint-tag">💬 Text Analyzer</span>
+        <span class="hint-tag">🎙 Voice Detect</span>
+        <span class="hint-tag">🏥 Doctor Verify</span>
+        <span class="hint-tag">🤖 AI Chatbot</span>
+      </div>
+
+      <div class="login-tabs">
+        <button class="tab-btn active">Login</button>
+        <button class="tab-btn">Sign Up</button>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Rajesh Kumar" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+        <div id="errorMsg" class="error-msg"></div>
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+          🛡 Enter TrustShield
+        </button>
+      </form>
+
+      <p style="text-align:center; font-size:12px; color:var(--text-muted); margin-top:20px;">
+        No password required • No data stored • Completely private
+      </p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

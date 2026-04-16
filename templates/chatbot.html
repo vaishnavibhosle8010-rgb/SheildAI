@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShieldBot Assistant — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">{{ user.name }}</div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="feature-header fade-in">
+      <div class="icon">🤖</div>
+      <div>
+        <h1>ShieldBot Assistant</h1>
+        <p>Ask me anything about scams, fraud, and how to protect yourself online</p>
+      </div>
+    </div>
+
+    <div class="chat-container fade-in">
+      <div class="chat-header">
+        <div class="chat-avatar">🛡</div>
+        <div class="chat-header-info">
+          <h3>ShieldBot</h3>
+          <p>● Online — Ready to help</p>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <div class="message-avatar">🛡</div>
+          <div class="message-text">👋 Hello {{ user.name }}! I'm ShieldBot, your personal scam protection assistant.
+
+I can help you understand different types of scams, explain how fraudsters operate, and tell you how to stay safe online.
+
+What would you like to know today?</div>
+        </div>
+      </div>
+
+      <div class="quick-chips">
+        <button class="chip">What is OTP scam?</button>
+        <button class="chip">How to spot phishing?</button>
+        <button class="chip">Fake lottery scam</button>
+        <button class="chip">UPI fraud</button>
+        <button class="chip">How to report scam?</button>
+        <button class="chip">Fake job offers</button>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" class="chat-input" placeholder="Ask me about any scam..." autocomplete="off">
+        <button id="sendBtn" class="chat-send">➤</button>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px;" class="fade-in fade-in-delay-1">
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-size:24px; margin-bottom:8px;">🔐</div>
+        <div style="font-size:13px; font-weight:600; margin-bottom:4px;">OTP Safety</div>
+        <div style="font-size:12px; color:var(--text-muted);">Ask: "What is OTP scam?"</div>
+      </div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-size:24px; margin-bottom:8px;">📞</div>
+        <div style="font-size:13px; font-weight:600; margin-bottom:4px;">Call Fraud</div>
+        <div style="font-size:12px; color:var(--text-muted);">Ask: "Fake police call"</div>
+      </div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-size:24px; margin-bottom:8px;">💰</div>
+        <div style="font-size:13px; font-weight:600; margin-bottom:4px;">Investment Scam</div>
+        <div style="font-size:12px; color:var(--text-muted);">Ask: "Investment fraud"</div>
+      </div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px;">
+        <div style="font-size:24px; margin-bottom:8px;">🆔</div>
+        <div style="font-size:13px; font-weight:600; margin-bottom:4px;">Identity Theft</div>
+        <div style="font-size:12px; color:var(--text-muted);">Ask: "Aadhaar fraud"</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

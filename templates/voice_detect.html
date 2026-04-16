@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Scam Detection — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">{{ user.name }}</div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="feature-header fade-in">
+      <div class="icon">🎙</div>
+      <div>
+        <h1>Voice Scam Detection</h1>
+        <p>Speak or repeat a suspicious call — our AI will analyze it for scam patterns</p>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <p style="color:var(--text-secondary); font-size:14px; margin-bottom:20px;">
+        📌 <strong>How to use:</strong> Click "Start Recording" and repeat what the caller said, or describe the conversation. Click Stop when done, then Analyze.
+      </p>
+
+      <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px; margin-bottom:20px; text-align:center;">
+        <div style="font-size:48px; margin-bottom:8px;">🎙</div>
+        <div id="visualizer" style="height:40px; display:flex; align-items:center; justify-content:center; gap:3px; margin-bottom:12px;">
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:8px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:16px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:24px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:12px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:32px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:20px; opacity:0.4;"></div>
+          <div class="bar" style="width:4px; background:var(--accent); border-radius:2px; height:14px; opacity:0.4;"></div>
+        </div>
+        <div class="recording-status">
+          <div class="recording-dot" id="recordingDot"></div>
+          <span id="recordingStatus">Ready to record</span>
+        </div>
+      </div>
+
+      <div class="voice-controls">
+        <button id="recordBtn" class="btn btn-record">🎙 Start Recording</button>
+        <button id="analyzeVoiceBtn" class="btn btn-primary" disabled>🔍 Analyze Speech</button>
+        <button class="btn btn-outline" onclick="document.getElementById('transcriptBox').textContent='Transcript will appear here...'; document.getElementById('transcriptBox').style.color='var(--text-muted)'; document.getElementById('analyzeVoiceBtn').disabled=true;">Clear</button>
+      </div>
+
+      <label style="display:block; font-size:13px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Detected Speech</label>
+      <div class="transcript-box" id="transcriptBox" style="color:var(--text-muted);">Transcript will appear here as you speak...</div>
+
+      <div class="loading" id="voiceLoading">
+        <div class="spinner"></div>
+        Analyzing speech for scam patterns...
+      </div>
+
+      <div id="voiceResult" class="result-panel"></div>
+    </div>
+
+    <div class="tips-box fade-in fade-in-delay-1" style="margin-top:20px;">
+      <h4>📞 Common Phone Scam Scripts</h4>
+      <ul>
+        <li><strong>"RBI calling"</strong> — RBI never calls individuals directly</li>
+        <li><strong>"Your Aadhaar is linked to crime"</strong> — This is pure intimidation fraud</li>
+        <li><strong>"Police will arrest you in 2 hours"</strong> — Fake arrest threats to extort money</li>
+        <li><strong>"Your KYC is expired, share OTP"</strong> — Banks update KYC at branches, not by phone</li>
+        <li><strong>"You won a prize, pay processing fee"</strong> — You never need to pay to receive prizes</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 20px; background:rgba(255,71,87,0.05); border:1px solid rgba(255,71,87,0.2); border-radius:var(--radius-sm);" class="fade-in fade-in-delay-2">
+      <p style="font-size:14px; color:var(--text-secondary);">
+        🌐 <strong>Browser Note:</strong> Voice recognition works best on <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong>.
+        Please allow microphone access when prompted.
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .bar { transition: height 0.15s ease; }
+    .recording .bar {
+      animation: barAnim 0.8s ease infinite;
+    }
+    @keyframes barAnim {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1.2); }
+    }
+    #visualizer.active .bar:nth-child(1) { animation-delay: 0s; }
+    #visualizer.active .bar:nth-child(2) { animation-delay: 0.1s; }
+    #visualizer.active .bar:nth-child(3) { animation-delay: 0.2s; }
+    #visualizer.active .bar:nth-child(4) { animation-delay: 0.3s; }
+    #visualizer.active .bar:nth-child(5) { animation-delay: 0.15s; }
+    #visualizer.active .bar:nth-child(6) { animation-delay: 0.05s; }
+    #visualizer.active .bar:nth-child(7) { animation-delay: 0.25s; }
+    #visualizer.active .bar { animation: barAnim 0.6s ease infinite; opacity: 1; }
+  </style>
+
+  <script>
+    // Enhance recording button to also animate the visualizer
+    const origRecord = window.onload;
+    document.addEventListener("DOMContentLoaded", () => {
+      const vis = document.getElementById("visualizer");
+      const recordBtn = document.getElementById("recordBtn");
+      if (!recordBtn) return;
+
+      const observer = new MutationObserver(() => {
+        if (recordBtn.classList.contains("recording")) {
+          vis.classList.add("active");
+        } else {
+          vis.classList.remove("active");
+        }
+      });
+      observer.observe(recordBtn, { attributes: true, attributeFilter: ["class"] });
+    });
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

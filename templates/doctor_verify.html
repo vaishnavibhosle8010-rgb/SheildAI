@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Verification — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">{{ user.name }}</div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="feature-header fade-in">
+      <div class="icon">🏥</div>
+      <div>
+        <h1>Doctor Verification</h1>
+        <p>Verify if a doctor or medical professional is registered and legitimate</p>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <form id="doctorForm">
+        <div class="form-group">
+          <label for="doctorInput">Doctor Name or Hospital</label>
+          <input type="text" id="doctorInput" placeholder="e.g. Dr. Rajesh Kumar or Apollo Hospitals..." autocomplete="off">
+        </div>
+        <button type="submit" id="doctorBtn" class="btn btn-primary">
+          🔍 Verify Doctor
+        </button>
+      </form>
+
+      <div class="loading" id="doctorLoading">
+        <div class="spinner"></div>
+        Checking medical database...
+      </div>
+
+      <div id="doctorResult"></div>
+    </div>
+
+    <div style="margin-top:20px;" class="fade-in fade-in-delay-1">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">Try these names:</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('doctorInput').value='Dr. Rajesh Kumar'">Dr. Rajesh Kumar</button>
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('doctorInput').value='Dr. Priya Sharma'">Dr. Priya Sharma</button>
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('doctorInput').value='Dr. Fake Doctor'">Unknown Doctor</button>
+      </div>
+    </div>
+
+    <div class="tips-box fade-in fade-in-delay-2" style="margin-top:20px;">
+      <h4>⚠ Common Medical Scams in India</h4>
+      <ul>
+        <li><strong>Fake Online Consultations:</strong> Fraudsters pose as AIIMS/Apollo doctors on WhatsApp</li>
+        <li><strong>Advance Fee Fraud:</strong> Asking for fees before showing credentials or treating you</li>
+        <li><strong>Fake Cancer/Disease Treatment:</strong> Claiming miracle cures and asking large payments</li>
+        <li><strong>Impersonation:</strong> Using names of real famous doctors to gain trust</li>
+        <li>Always verify using the official MCI website or by calling the hospital directly</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;" class="fade-in fade-in-delay-3">
+      <h3 style="font-size:16px; margin-bottom:16px;">📋 Official Verification Resources</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px;">
+        <div style="padding:14px; background:var(--bg-secondary); border-radius:8px; border:1px solid var(--border);">
+          <div style="font-weight:600; color:var(--accent);">MCI India</div>
+          <div style="font-size:12px; color:var(--text-muted);">mciindia.org — Official Doctor Registry</div>
+        </div>
+        <div style="padding:14px; background:var(--bg-secondary); border-radius:8px; border:1px solid var(--border);">
+          <div style="font-weight:600; color:var(--accent);">NMC India</div>
+          <div style="font-size:12px; color:var(--text-muted);">nmc.org.in — National Medical Commission</div>
+        </div>
+        <div style="padding:14px; background:var(--bg-secondary); border-radius:8px; border:1px solid var(--border);">
+          <div style="font-weight:600; color:var(--accent);">NABH</div>
+          <div style="font-size:12px; color:var(--text-muted);">nabh.co — Hospital Accreditation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

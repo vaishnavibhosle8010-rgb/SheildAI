@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Analyzer — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">{{ user.name }}</div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="feature-header fade-in">
+      <div class="icon">🔗</div>
+      <div>
+        <h1>URL Scam Analyzer</h1>
+        <p>Detect phishing links, fake banking sites, and malicious URLs before clicking</p>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <form id="urlForm">
+        <div class="form-group">
+          <label for="urlInput">Paste Suspicious URL</label>
+          <input type="text" id="urlInput" placeholder="https://sbi-verify-account.tk/login or any suspicious link..." autocomplete="off">
+        </div>
+        <button type="submit" id="urlBtn" class="btn btn-primary">
+          🔍 Analyze URL
+        </button>
+      </form>
+
+      <div class="loading" id="urlLoading">
+        <div class="spinner"></div>
+        Scanning URL for threats...
+      </div>
+
+      <div id="urlResult" class="result-panel"></div>
+    </div>
+
+    <div class="tips-box fade-in fade-in-delay-1" style="margin-top:20px;">
+      <h4>🛡 Quick Safety Tips</h4>
+      <ul>
+        <li>Always check the exact spelling of the domain (e.g., sbi<strong>i</strong>ndia.com is fake)</li>
+        <li>Legitimate banks use <strong>.com</strong>, <strong>.co.in</strong> or <strong>.gov.in</strong> — never .tk, .ml, .xyz</li>
+        <li>Look for HTTPS (padlock icon) but know HTTPS alone doesn't mean safe</li>
+        <li>Never click links sent via SMS from unknown numbers</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px;" class="fade-in fade-in-delay-2">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">Try these test URLs:</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('urlInput').value='http://sbi-account-verify.tk/login/otp'">Fake SBI Link</button>
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('urlInput').value='https://192.168.1.1/paytm/verify'">IP Address URL</button>
+        <button class="btn btn-outline" style="font-size:13px; padding:8px 14px;" onclick="document.getElementById('urlInput').value='https://www.sbi.co.in'">Real SBI Link</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
