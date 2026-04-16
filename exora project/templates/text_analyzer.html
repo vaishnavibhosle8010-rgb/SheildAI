@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Scam Analyzer — TrustShield</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/dashboard" class="nav-brand">
+      <div class="logo-icon">🛡</div>
+      <span>TrustShield</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-user">{{ user.name }}</div>
+      <a href="/logout" class="btn-logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+
+    <div class="feature-header fade-in">
+      <div class="icon">💬</div>
+      <div>
+        <h1>Text Scam Analyzer</h1>
+        <p>Detect OTP fraud, fake prizes, urgency scams, and impersonation in messages</p>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <form id="textForm">
+        <div class="form-group">
+          <label for="textInput">Paste Suspicious Message</label>
+          <textarea id="textInput" placeholder="Paste any SMS, WhatsApp message, or email text here...&#10;&#10;Example: Dear customer, your SBI account will be suspended. Share your OTP immediately to avoid deactivation."></textarea>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button type="submit" id="textBtn" class="btn btn-primary">
+            🔍 Analyze Message
+          </button>
+          <button type="button" class="btn btn-outline" onclick="document.getElementById('textInput').value=''">
+            Clear
+          </button>
+        </div>
+      </form>
+
+      <div class="loading" id="textLoading">
+        <div class="spinner"></div>
+        Analyzing message patterns...
+      </div>
+
+      <div id="textResult" class="result-panel"></div>
+    </div>
+
+    <div style="margin-top:20px;" class="fade-in fade-in-delay-1">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">Try these sample messages:</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-outline sample-btn" style="font-size:12px; padding:8px 14px;"
+          data-text="URGENT: Your SBI account will be blocked within 24 hours. Share your OTP immediately to verify: Call 9876543210">OTP Scam</button>
+        <button class="btn btn-outline sample-btn" style="font-size:12px; padding:8px 14px;"
+          data-text="Congratulations! You have won Rs 25 Lakh in BSNL lottery. Click http://bit.ly/claim-prize to claim your reward now. Limited time offer!">Lottery Scam</button>
+        <button class="btn btn-outline sample-btn" style="font-size:12px; padding:8px 14px;"
+          data-text="Income Tax Department: Your PAN card has been suspended due to suspicious activity. Pay Rs 2000 penalty immediately or face arrest.">Govt Impersonation</button>
+        <button class="btn btn-outline sample-btn" style="font-size:12px; padding:8px 14px;"
+          data-text="Hi! Your order #12345 has been shipped and will be delivered by tomorrow. Track at flipkart.com/track">Safe Message</button>
+      </div>
+    </div>
+
+    <div class="tips-box fade-in fade-in-delay-2" style="margin-top:20px;">
+      <h4>🛡 Remember These Rules</h4>
+      <ul>
+        <li><strong>No bank or government agency will EVER ask for your OTP</strong> via SMS or call</li>
+        <li>Messages creating extreme urgency ("within 24 hours", "last chance") are almost always scams</li>
+        <li>You cannot win a lottery you did not enter</li>
+        <li>Government agencies send official letters, not WhatsApp messages</li>
+        <li>If in doubt, call the official helpline number of the organization</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
