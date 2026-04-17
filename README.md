@@ -1,0 +1,65 @@
+ShieldAI – AI-Powered Smart Security & Analysis System
+Overview
+
+ShieldAI is an AI-powered web application designed to enhance digital safety and intelligence analysis. It provides multiple AI-based tools such as chatbot assistance, text analysis, URL analysis, voice detection, and verification modules in a single unified platform.
+
+This project was built for a hackathon to demonstrate practical AI integration in real-world security and assistance systems.
+
+Features:
+ AI Chatbot-
+Intelligent conversational assistant
+Helps users with queries and guidance
+ Text Analyzer-
+Analyzes input text
+Detects patterns, sentiment, and insights
+ URL Analyzer-
+Checks safety of URLs
+Identifies suspicious or malicious links
+ Voice Detection Module-
+Processes and analyzes voice input
+Helps in audio-based interaction
+ Doctor Verification Module-
+Verifies and manages trusted medical professionals
+ Dashboard-
+Central control panel for all modules
+Easy navigation between features
+ Tech Stack-
+Frontend: HTML, CSS, JavaScript
+Backend: Python (Flask)
+AI/Logic: Python-based processing
+Styling: Custom CSS
+Templates: Flask Jinja2
+📁 Project Structure
+exora project/
+ -app.py
+ -Procfile
+-requirements.txt
+-static/
+    ->style.css
+    ─> script.js
+- templates/
+ -> index.html
+ ─> dashboard.html
+ ─> chatbot.html
+ ─> text_analyzer.html
+ ─> url_analyzer.html
+ ─> voice_detect.html
+ ─> doctor_verify.html
+ Installation & Setup
+1. Clone repository
+git clone https://github.com/vaishnavibhosle8010-rgb/SheildAI.git
+2. Move into project folder
+cd "exora project"
+3. Install dependencies
+pip install -r requirements.txt
+4. Run the application
+python app.py
+ Future Improvements
+Add real AI/ML models for better predictions
+Improve UI with modern frameworks
+Deploy on cloud (Render / AWS)
+Add authentication system
+Mobile responsive design
+Hackathon Goal
+
+This project was developed to demonstrate how AI can be used to build a unified security and analysis system that can assist users in real-time decision making.
